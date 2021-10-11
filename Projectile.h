@@ -1,3 +1,9 @@
+//
+// Codé par William ISABELLE. Ce programme a été réalisé dans le cadre de ma deuxième année de prépa intégrée à POLYTECH Orléans.
+//
+
+
+
 #pragma once
 #include<math.h>
 
