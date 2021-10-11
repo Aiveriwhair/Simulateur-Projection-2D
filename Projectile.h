@@ -4,10 +4,10 @@
 struct Projectile
 {
 public:
-	float g = 9.8f; //Force de gravitée exercée sur le projectile
-	float Vinit;	//Vitesse initiale donnée au projectile
-	float Hauteur;  //Hauteur de laquelle le projectile est lancé
-	float Angle;	//Angle de lancé du projectile par rapport à la normale (appartient à ]pi/2 ; 0[).
+	float g = 9.8f; //Force de gravitÃ©e exercÃ©e sur le projectile
+	float Vinit;	//Vitesse initiale donnÃ©e au projectile
+	float Hauteur;  //Hauteur de laquelle le projectile est lancÃ©
+	float Angle;	//Angle de lancÃ© du projectile par rapport Ã  la normale (appartient Ã  ]pi/2 ; 0[).
 
 
 public:
@@ -24,22 +24,22 @@ public:
 
 
 	/// <summary>
-	/// 	//Construteur par paramètre
+	/// 	//Construteur par paramÃ¨tres
 	/// </summary>
 	/// <param name="V">Vitesse initiale du projectile</param>
-	/// <param name="hauteur">Hauteur de laquelle il est lancé</param>
-	/// <param name="ang">Angle auquel il est lancé par rapport à la normale</param>
+	/// <param name="hauteur">Hauteur de laquelle il est lancÃ©</param>
+	/// <param name="ang">Angle auquel il est lancÃ© par rapport Ã  la normale</param>
 	Projectile(float V, float hauteur, float ang)
 	{
 		Vinit = V;
 		Hauteur = hauteur;
 		Angle = ang;
-		CheckAngle(); //Vérifie que l'angle de lancé appartient à ]pi/2 ; 0[
+		CheckAngle(); //VÃ©rifie que l'angle de lancÃ© appartient Ã  ]pi/2 ; 0[
 	}
 
 
 	/// <summary>
-	/// Retourne la hauteur en tout point X selon l'équation de la trajectoire sans frottement de l'air
+	/// Retourne la hauteur en tout point X selon l'Ã©quation de la trajectoire sans frottement de l'air
 	/// </summary>
 	inline float Zcoord(float x)
 	{
@@ -79,11 +79,11 @@ public:
 
 	
 	/// <summary>
-	///Modifier les propriétés du projectile
+	///Modifier les propriÃ©tÃ©s du projectile
 	/// </summary>
 	/// <param name="V">Vitesse initiale du projectile</param>
-	/// <param name="hauteur">Hauteur de laquelle il est lancé</param>
-	/// <param name="ang">Angle auquel il est lancé par rapport à la normale</param>
+	/// <param name="hauteur">Hauteur de laquelle il est lancÃ©</param>
+	/// <param name="ang">Angle auquel il est lancÃ© par rapport Ã  la normale</param>
 	inline void SetNewProperties(float V, float h, float ang)
 	{
 		Vinit = V;
@@ -95,7 +95,7 @@ public:
 
 
 	/// <summary>
-	///Coordonnées x en fonction de t
+	///CoordonnÃ©es x en fonction de t
 	/// </summary>
 	inline float xt(float t)
 	{
@@ -104,7 +104,7 @@ public:
 
 
 	/// <summary>
-	///Coordonnées z en fonction de t
+	///CoordonnÃ©es z en fonction de t
 	/// </summary>
 	inline float zt(float t)
 	{
@@ -126,7 +126,7 @@ private:
 	//Fonctions de debogage
 	
 	/// <summary>
-	/// Fonction Vérifiant que l'angle de lancé appartient à ]pi/2 ; 0[
+	/// Fonction VÃ©rifiant que l'angle de lancÃ© appartient Ã  ]pi/2 ; 0[
 	/// </summary>
 	inline void CheckAngle()
 	{
