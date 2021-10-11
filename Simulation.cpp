@@ -1,12 +1,16 @@
+//
+// Cod√© par William ISABELLE. Ce programme a √©t√© r√©alis√© dans le cadre de ma deuxi√®me ann√©e de pr√©pa int√©gr√©e √† POLYTECH Orl√©ans.
+//
+
 #include "Simulation.h"
 
 
 /// <summary>
-/// Fonction dans laquelle on ajoute tous les elements graphiques qui sont mis ‡ jour ‡ chaque frame
+/// Fonction dans laquelle on ajoute tous les elements graphiques qui sont mis √† jour √† chaque frame
 /// </summary>
-/// <param name="img">Image qui sera ensuite affichÈe ‡ l'Ècran</param>
+/// <param name="img">Image qui sera ensuite affich√©e √† l'√©cran</param>
 /// <param name="t">Temps t auquel on se trouve dans l'animation</param>
-/// <param name="ElapsedTime">Temps que prend la boucle gÈnÈral de la simulation pour faire un tour. Permet de connaitre la frÈquence de raffraichissement de l'animation</param>
+/// <param name="ElapsedTime">Temps que prend la boucle g√©n√©ral de la simulation pour faire un tour. Permet de connaitre la fr√©quence de raffraichissement de l'animation</param>
 void Simulation::Draw(cv::Mat& img, float t, float& ElapsedTime) //Function called every frame
 {
 	float radius = 10;
@@ -14,7 +18,7 @@ void Simulation::Draw(cv::Mat& img, float t, float& ElapsedTime) //Function call
 
 	circle(img, cv::Point(m_obj.xt(t) * Scale(), Window.rows - m_obj.zt(t) * Scale()), radius, cv::Scalar(255, 255, 255), cv::FILLED); //Draw the projectile (xt, zt)
 
-	cv::putText(img, "Speed = " + std::to_string(m_obj.VitesseEnX(m_obj.xt(t))), cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7f, cv::Scalar(25, 255, 255)); //Vitesse en temps rÈel
+	cv::putText(img, "Speed = " + std::to_string(m_obj.VitesseEnX(m_obj.xt(t))), cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7f, cv::Scalar(25, 255, 255)); //Vitesse en temps r√©el
 	cv::putText(img, "FPS = " + std::to_string(1/ElapsedTime*pow(10,9)), cv::Point(WIDTH - 150, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7f, cv::Scalar(25, 255, 255)); //FPS
 
 }
@@ -23,7 +27,7 @@ void Simulation::Draw(cv::Mat& img, float t, float& ElapsedTime) //Function call
 
 
 /// <summary>
-/// Fonction qui permet de dÈterminer le rapport entre la hauteur de la fentre et la hauteur max ET celui entre 
+/// Fonction qui permet de d√©terminer le rapport entre la hauteur de la fentre et la hauteur max ET celui entre 
 /// </summary>
 /// <returns></returns>
 float Simulation::Scale()
@@ -51,7 +55,7 @@ float Simulation::Smallest(float a, float b)
 
 
 /// <summary>
-/// Constructeur par dÈfaut de la classe Simulation
+/// Constructeur par d√©faut de la classe Simulation
 /// </summary>
 Simulation::Simulation()
 {
@@ -63,7 +67,7 @@ Simulation::Simulation()
 
 
 /// <summary>
-/// Constructeur par paramËtres de la classe Simulation
+/// Constructeur par param√®tres de la classe Simulation
 /// </summary>
 /// <param name="WinName">Nom de la fentre</param>
 /// <param name="WinHeight">Hauteur de la fenetre en pixel</param>
@@ -80,7 +84,7 @@ Simulation::Simulation(std::string WinName, const unsigned int WinHeight, const 
 
 
 /// <summary>
-/// Permet d'afficher la fenetre de la simulation. Cela correspond ‡ l'arriËre plan pendant ue simulation
+/// Permet d'afficher la fenetre de la simulation. Cela correspond √† l'arri√®re plan pendant ue simulation
 /// </summary>
 void Simulation::ConstructWindow() const
 {
@@ -91,19 +95,19 @@ void Simulation::ConstructWindow() const
 
 
 /// <summary>
-/// Permet de dessiner sur l'arriËre plan de la simulation la prÈvision de la trajectoire du projectile
+/// Permet de dessiner sur l'arri√®re plan de la simulation la pr√©vision de la trajectoire du projectile
 /// </summary>
 void Simulation::PreviewTrajectory() //Add the trajectory on the bg image
 {
 	/// <summary>
-	/// Pas entre les diffÈrentes points de la prÈvision. On multiplie par le facteur Scale() pour avoir un nombre de point adaptatif selon la taille de la simulation
+	/// Pas entre les diff√©rentes points de la pr√©vision. On multiplie par le facteur Scale() pour avoir un nombre de point adaptatif selon la taille de la simulation
 	/// </summary>
 	float Pas = 15 /Scale();
 
 	/// <summary>
-	/// Boucle qui balaye tous les pixels de 0 ‡ la portÈe maximale. Tous les "pas" pixels, on dessine un petit cercle plein.
-	/// On multiplie les coordonnÈes de ce cercle par le Scale() pour obtenir une simulation qui entre bien dans la fenetre de la simulation.
-	/// On oublie pas d'inverser la coordonnÈe Z puisque dans opencv, le 0, 0 correspond au coin en haut ‡ gauche de l'Ècran et non en bas ‡ gauche
+	/// Boucle qui balaye tous les pixels de 0 √† la port√©e maximale. Tous les "pas" pixels, on dessine un petit cercle plein.
+	/// On multiplie les coordonn√©es de ce cercle par le Scale() pour obtenir une simulation qui entre bien dans la fenetre de la simulation.
+	/// On oublie pas d'inverser la coordonn√©e Z puisque dans opencv, le 0, 0 correspond au coin en haut √† gauche de l'√©cran et non en bas √† gauche
 	/// </summary>
 	float x = 0;
 	while (x <= m_obj.Xmax())
@@ -117,11 +121,11 @@ void Simulation::PreviewTrajectory() //Add the trajectory on the bg image
 
 
 /// <summary>
-/// CrÈer une copie de l'image du background pour ne pas la modifier. C'est sur cette copie qu'on applique ensuite la fonction Draw().
+/// Cr√©er une copie de l'image du background pour ne pas la modifier. C'est sur cette copie qu'on applique ensuite la fonction Draw().
 /// Finalement, on peut afficher l'image obtenue.
 /// </summary>
 /// <param name="t">Temps t auquel on se trouve dans l'animation</param>
-/// <param name="Etime">Temps que prend la boucle gÈnÈral de la simulation pour faire un tour. Permet de connaitre la frÈquence de raffraichissement de l'animation </param>
+/// <param name="Etime">Temps que prend la boucle g√©n√©ral de la simulation pour faire un tour. Permet de connaitre la fr√©quence de raffraichissement de l'animation </param>
 void Simulation::Update(float t, float& Etime)
 {
 	cv::Mat temp;
@@ -134,17 +138,17 @@ void Simulation::Update(float t, float& Etime)
 
 
 /// <summary>
-/// Fonction Servant de boucle gÈnÈrale de la simulation
+/// Fonction Servant de boucle g√©n√©rale de la simulation
 /// </summary>
-/// <param name="StartT">Temps ‡ partir duquel on veut dÈmarrer la simulation</param>
-/// <param name="Timespeed">Facteur de vitesse d'Ècoulement du temps. On peut le modifier pour ralentir ou accÈlÈrer l'animation</param>
+/// <param name="StartT">Temps √† partir duquel on veut d√©marrer la simulation</param>
+/// <param name="Timespeed">Facteur de vitesse d'√©coulement du temps. On peut le modifier pour ralentir ou acc√©l√©rer l'animation</param>
 void Simulation::PlaySimulation(float StartT, float Timespeed)
 {
 	std::cout << "Debut de la simulation " << std::endl;
 
 
 	/// <summary>
-	/// On commence par effectuer les modifications que l'on souhaite ‡ l'arriËre plan de la simulation
+	/// On commence par effectuer les modifications que l'on souhaite √† l'arri√®re plan de la simulation
 	/// </summary>
 	PreviewTrajectory();
 	std::cout << "Trajectoire ajoutee au bg" << std::endl;
@@ -152,7 +156,7 @@ void Simulation::PlaySimulation(float StartT, float Timespeed)
 
 
 	/// <summary>
-	/// Cette boucle permet d'appeler la fonction update ‡ chaque frame pour mettre ‡ jour la simulation pendant toute la durÈe de cette derniËre.
+	/// Cette boucle permet d'appeler la fonction update √† chaque frame pour mettre √† jour la simulation pendant toute la dur√©e de cette derni√®re.
 	/// On en profite pour calculer 
 	/// </summary>
 	float ElapsedTime = 0;
@@ -172,9 +176,9 @@ void Simulation::PlaySimulation(float StartT, float Timespeed)
 		ElapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 		PreviousElapsedTime = ElapsedTime;
 		/// <summary>
-		/// On multiplie le temps par le temps qu'‡ mis la boucle pour faire l'update. Cela permet d'avoir un Ècoulement du temps t constant.
-		/// En effet, sur certains tours de la boucle, les calculs pourraient Ítre effectuÈ plus rapidement, on verrait alors la simulation
-		/// s'accÈlÈrer sans raison. Cette boucle rÈmÈdie ‡ cela.
+		/// On multiplie le temps par le temps qu'√† mis la boucle pour faire l'update. Cela permet d'avoir un √©coulement du temps t constant.
+		/// En effet, sur certains tours de la boucle, les calculs pourraient √™tre effectu√© plus rapidement, on verrait alors la simulation
+		/// s'acc√©l√©rer sans raison. Cette boucle r√©m√©die √† cela.
 		/// </summary>
 		t += 1.0f * Timespeed * ElapsedTime * pow(10, -9);
 
